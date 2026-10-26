@@ -77,6 +77,9 @@ Editor::Editor(SDL_Window *w, const IBP_VulkanDevice &vk) : window(w), device(vk
   fs::create_directories(stateDir);
 }
 Editor::~Editor() {
+  if (agentTask.valid()) agentTask.wait();
+  if (feedbackTask.valid()) feedbackTask.wait();
+  releaseReview();
   if (decode.valid())
     decode.wait();
   cancelExport = true;
@@ -93,6 +96,7 @@ Editor::~Editor() {
   IBP_Destroy(core);
 }
 bool Editor::canClose() {
+  if (agentTask.valid() || feedbackTask.valid()) { status = "Agent 任务运行中"; return false; }
   if (dialogOpen) {
     status = "请先关闭文件对话框";
     return false;
@@ -295,6 +299,32 @@ void Editor::renderPreview() {
 }
 void Editor::tick() {
   try {
+    if (feedbackTask.valid() && feedbackTask.wait_for(0s) == std::future_status::ready)
+      agentStatus = feedbackTask.get();
+    if (agentTask.valid() && agentTask.wait_for(0s) == std::future_status::ready) {
+      agentResult = agentTask.get();
+      agentStatus = agentResult.error;
+      if (agentResult.error.empty()) {
+        releaseReview();
+        IBP_HostImage h{};
+        try {
+          ck(IBP_LoadImage(u8(agentResult.preview).c_str(), 0, &h));
+          reviewW=int(h.width); reviewH=int(h.height);
+          ck(UploadImage(core,&h,&reviewImage)); ck(UploadImage(core,&h,&reviewDisplay));
+          ck(IBP_EncodeDisplay(core,reviewImage,reviewDisplay)); reviewSet=texture(reviewDisplay);
+          IBP_FreeHostImage(&h); h={};
+          ck(IBP_LoadImage(u8(agentResult.before).c_str(), 0, &h));
+          ck(UploadImage(core,&h,&reviewBefore)); ck(UploadImage(core,&h,&reviewBeforeDisplay));
+          ck(IBP_EncodeDisplay(core,reviewBefore,reviewBeforeDisplay)); reviewBeforeSet=texture(reviewBeforeDisplay);
+          IBP_FreeHostImage(&h); h={};
+        } catch (...) { IBP_FreeHostImage(&h); releaseReview(); throw; }
+        agentReview=true; agentCompare=false; agentStatus="已生成";
+        if (active>=0 && photos[active].path==agentResult.source && same(photos[active].edit,agentStart)) {
+          IBP_Recipe r{}; ck(IBP_LoadRecipe(u8(agentResult.recipe).c_str(),&r));
+          photos[active].edit={r.target.parameters,r.curves}; commit("Agent");
+        }
+      }
+    }
     std::vector<std::pair<int, std::string>> results;
     {
       std::lock_guard lock(dialogMutex);
@@ -719,7 +749,6 @@ void Editor::drawCurve() {
     ImGui::Text("输入 %.0f   输出 %.0f", c.points[channel][curvePoint][0] * 255,
                 c.points[channel][curvePoint][1] * 255);
   else
-    ImGui::TextDisabled("单击加点 · 拖动调整 · 右键删除");
   if (ImGui::Button("线性")) {
     c.count[channel] = 2;
     c.interpolation[channel] = 1;
@@ -742,8 +771,8 @@ void Editor::drawCurve() {
 }
 void Editor::drawAdjustments() {
   ImGui::Begin("调整");
+  drawAgent();
   if (active < 0) {
-    ImGui::TextDisabled("打开照片后开始调整");
     ImGui::End();
     return;
   }
@@ -794,7 +823,7 @@ void Editor::drawAdjustments() {
     slider("锐化", 12, 0, 2);
     slider("降噪", 13, 0, 1);
     slider("清晰度", 14, -1, 1);
-    ImGui::TextWrapped("预览最长边 2048 像素。细节参数需在全尺寸导出中复核。");
+
   }
   if (ImGui::CollapsingHeader("几何")) {
     slider("旋转", 19, -45, 45, 0, "%.1f");
@@ -830,7 +859,6 @@ void Editor::drawCanvas() {
   ImGui::SameLine();
   ImGui::Checkbox("原图", &showOriginal);
   ImGui::SameLine();
-  ImGui::TextDisabled("滚轮缩放 · 空格拖动 · 按住 \\ 看原图");
   auto pos = ImGui::GetCursorScreenPos(), area = ImGui::GetContentRegionAvail();
   area.x = std::max(1.f, area.x);
   area.y = std::max(1.f, area.y);
@@ -894,7 +922,6 @@ void Editor::drawFilmstrip() {
     for (auto &p : photos)
       p.selected = false;
   ImGui::SameLine();
-  ImGui::TextDisabled("%d 张 · Ctrl+单击多选", int(photos.size()));
   float unit = ImGui::GetFontSize() / 18.f;
   for (int i = 0; i < int(photos.size()); i++) {
     auto &p = photos[i];
@@ -1048,6 +1075,10 @@ void Editor::drawToolbar() {
       resettingLayout = true;
     ImGui::EndPopup();
   }
+  ImGui::SameLine();
+  if (ImGui::Button("API 设置")) agentOpenPanel("settings");
+  ImGui::SameLine();
+  if (ImGui::Button("训练")) agentOpenPanel("training");
   ImGui::SameLine(std::max(ImGui::GetCursorPosX() + 15, vp->WorkSize.x - 135));
   ImGui::BeginDisabled(active < 0 || exporting.valid());
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(.22f, .46f, .51f, 1));
@@ -1137,7 +1168,6 @@ void Editor::draw() {
       ImGui::Combo("格式", &exportFormat, formats, 3);
       if (exportFormat == 0)
         ImGui::SliderInt("JPEG 质量", &exportQuality, 1, 100);
-      ImGui::TextDisabled("使用每张照片当前参数；现有图片不覆盖。附带 v2 配方。");
       if (ImGui::Button("开始导出")) {
         try {
           startExport();
@@ -1155,5 +1185,56 @@ void Editor::draw() {
     }
   } catch (const std::exception &e) {
     status = e.what();
+  }
+}
+
+void Editor::releaseReview() {
+  vkDeviceWaitIdle(device);
+  if(reviewSet) ImGui_ImplVulkan_RemoveTexture(reviewSet);
+  if(reviewBeforeSet) ImGui_ImplVulkan_RemoveTexture(reviewBeforeSet);
+  reviewSet=reviewBeforeSet={};
+  for(auto id:{reviewImage,reviewDisplay,reviewBefore,reviewBeforeDisplay})if(id)IBP_ReleaseImage(core,id);
+  reviewImage=reviewDisplay=reviewBefore=reviewBeforeDisplay=0;
+}
+void Editor::drawAgent() {
+  if(ImGui::CollapsingHeader("Agent",ImGuiTreeNodeFlags_DefaultOpen)) {
+    const char* roles[]={"Qwen · 本地学生","API · 教师模型"};
+    ImGui::SetNextItemWidth(-1);ImGui::Combo("##agentrole",&agentRole,roles,2);
+    ImGui::InputTextMultiline("##command",agentPrompt,sizeof(agentPrompt),{-1,68});
+    ImGui::BeginDisabled(active<0||agentTask.valid()||!agentPrompt[0]);
+    if(ImGui::Button("生成",{ImGui::GetContentRegionAvail().x*.48f,0})) {
+      auto source=photos[active].path;std::string prompt=agentPrompt;bool teacher=agentRole==1;
+      agentStart=photos[active].edit;agentStatus="生成中…";
+      agentTask=std::async(std::launch::async,[source,prompt,teacher]{return agentGenerate(source,prompt,teacher);});
+    }
+    ImGui::EndDisabled();ImGui::SameLine();
+    ImGui::BeginDisabled(!reviewSet);
+    if(ImGui::Button("审阅",{-1,0}))agentReview=true;
+    ImGui::EndDisabled();
+    if(!agentStatus.empty())ImGui::TextWrapped("%s",agentStatus.c_str());
+  }
+  ImGui::Separator();
+  if(agentReview&&!ImGui::IsPopupOpen("Agent 审阅"))ImGui::OpenPopup("Agent 审阅");
+  ImGui::SetNextWindowSize({920,740},ImGuiCond_FirstUseEver);
+  if(ImGui::BeginPopupModal("Agent 审阅",&agentReview)) {
+    if(reviewSet) {
+      ImGui::Checkbox("原图",&agentCompare);ImGui::SameLine();
+      ImGui::TextUnformatted(u8(agentResult.source.filename()).c_str());
+      auto available=ImGui::GetContentRegionAvail();
+      float footer=3*ImGui::GetFrameHeightWithSpacing()+3*ImGui::GetTextLineHeightWithSpacing();
+      float scale=std::min(available.x/reviewW,std::max(80.f,available.y-footer)/reviewH);
+      ImGui::Image((ImTextureID)(uintptr_t)(agentCompare?reviewBeforeSet:reviewSet),{reviewW*scale,reviewH*scale});
+      ImGui::InputTextWithHint("##shootgroup","拍摄组（可选）",agentGroup,sizeof(agentGroup));
+      ImGui::TextUnformatted("对本次生成的图片满意吗？");
+      ImGui::BeginDisabled(feedbackTask.valid()||agentCompare);
+      auto rate=[&](bool accepted){auto id=agentResult.job;std::string group=agentGroup;feedbackTask=std::async(std::launch::async,[id,accepted,group]{try{agentFeedback(id,accepted,group);return std::string(accepted?"已保存 · 满意":"已保存 · 不满意");}catch(const std::exception& e){return std::string(e.what());}});};
+      if(ImGui::Button("满意"))rate(true);ImGui::SameLine();if(ImGui::Button("不满意"))rate(false);
+      ImGui::EndDisabled();ImGui::SameLine();
+      ImGui::BeginDisabled(active<0||(active>=0&&photos[active].path!=agentResult.source));
+      if(ImGui::Button("应用配方")){IBP_Recipe r{};ck(IBP_LoadRecipe(u8(agentResult.recipe).c_str(),&r));photos[active].edit={r.target.parameters,r.curves};commit("Agent 配方");}
+      ImGui::EndDisabled();ImGui::SameLine();if(ImGui::Button("关闭")){agentReview=false;ImGui::CloseCurrentPopup();}
+      ImGui::TextWrapped("%s",agentStatus.c_str());
+    }
+    ImGui::EndPopup();
   }
 }

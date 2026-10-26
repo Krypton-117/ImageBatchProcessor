@@ -1,0 +1,3 @@
+# Keep research copies out of Git and public patches.
+*.pdf
+*.part

@@ -1,0 +1,3 @@
+# Local source and tests can run without checking model/RAW assets into Git.
+__pycache__/
+*.pyc

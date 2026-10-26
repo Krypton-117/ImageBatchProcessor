@@ -1,0 +1,578 @@
+[
+  {
+    "id": "debevec1997",
+    "title": "Recovering High Dynamic Range Radiance Maps from Photographs",
+    "year": 1997,
+    "doi": "10.1145/258734.258884",
+    "url": "https://www.pauldebevec.com/Research/HDR/",
+    "pdf_url": "https://people.eecs.berkeley.edu/~malik/papers/debevec-malik97.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\debevec-malik97.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "b8f365d349f55b5ccfe44ef73a117165bc62d635b6cb1c01c94fe17b527ceb39",
+    "notes": [],
+    "download_error": null,
+    "authors": [
+      "Paul E. Debevec",
+      "Jitendra Malik"
+    ],
+    "venue": "SIGGRAPH 1997",
+    "pages": "369-378",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1145/258734.258884",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1145/258734.258884",
+      "https://www.pauldebevec.com/Research/HDR/"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 10,
+    "bytes": 1434221,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 57,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "reinhard2002",
+    "title": "Photographic Tone Reproduction for Digital Images",
+    "year": 2002,
+    "doi": "10.1145/566654.566575",
+    "url": "https://doi.org/10.1145/566654.566575",
+    "pdf_url": "https://www.cs.utah.edu/docs/techreports/2002/pdf/UUCS-02-001.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\reinhard2002.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "fd0da522616050364682fd2c1641e6d5be886106ca8765bfaadfb0760913b2f8",
+    "notes": [
+      "PDF is university technical report UUCS-02-001, dated 2002-01-14, not final TOG typesetting."
+    ],
+    "bytes": 352238,
+    "pages": "267-276",
+    "download_error": null,
+    "authors": [
+      "Erik Reinhard",
+      "Michael Stark",
+      "Peter Shirley",
+      "James Ferwerda"
+    ],
+    "venue": "ACM Transactions on Graphics 21(3)",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1145/566654.566575",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1145/566654.566575",
+      "https://doi.org/10.1145/566654.566575"
+    ],
+    "pdf_pages": 11,
+    "missing_reason": null,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 50,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "peli1990",
+    "title": "Contrast in complex images",
+    "year": 1990,
+    "doi": "10.1364/JOSAA.7.002032",
+    "url": "https://opg.optica.org/josaa/abstract.cfm?uri=josaa-7-10-2032",
+    "pdf_url": "https://pelilab.partners.org/papers/ContrastJOSA.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\ContrastJOSA.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "cb44b56d5ac46e353d945f9cb7bc7c978dd8a2ce37fd0d6a59b2ae2f2b04c45d",
+    "notes": [],
+    "download_error": null,
+    "authors": [
+      "Eli Peli"
+    ],
+    "venue": "Journal of the Optical Society of America A 7(10)",
+    "pages": "2032-2040",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1364/JOSAA.7.002032",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1364/JOSAA.7.002032",
+      "https://opg.optica.org/josaa/abstract.cfm?uri=josaa-7-10-2032"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 9,
+    "bytes": 3094528,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 51,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "hasler2003",
+    "title": "Measuring colorfulness in natural images",
+    "year": 2003,
+    "doi": "10.1117/12.477378",
+    "url": "https://infoscience.epfl.ch/entities/publication/e64ec735-2e1b-45ea-bc83-71f6d735068e",
+    "pdf_url": "https://infoscience.epfl.ch/server/api/core/bitstreams/77f5adab-e825-4995-92db-c9ff4cd8bf5a/content",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\hasler2003.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "df6ca71a4cd1bff9e384b37187d003e9bd74794eb535006853ff6eee959fad65",
+    "notes": [
+      "Formula verified in Section 7 of author manuscript. Publisher spelling colorfulness differs from manuscript colourfulness. Crossref only lists start page 87."
+    ],
+    "download_error": null,
+    "authors": [
+      "David Hasler",
+      "Sabine E. Süsstrunk"
+    ],
+    "venue": "Human Vision and Electronic Imaging VIII, Proceedings of SPIE 5007",
+    "pages": "87-95",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1117/12.477378",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1117/12.477378",
+      "https://doi.org/10.1117/12.477378"
+    ],
+    "bytes": 182038,
+    "pdf_pages": 9,
+    "formula_verified": "Author manuscript Section 7, sRGB opponent-channel model M(3). Use consistent RGB numeric scale.",
+    "missing_reason": null,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 25,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "foi2008",
+    "title": "Practical Poissonian-Gaussian Noise Modeling and Fitting for Single-Image Raw-Data",
+    "year": 2008,
+    "doi": "10.1109/TIP.2008.2001399",
+    "url": "https://webpages.tuni.fi/foi/sensornoise.html",
+    "pdf_url": "https://webpages.tuni.fi/foi/papers/Foi-PoissonianGaussianClippedRaw-2007-IEEE_TIP.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\Foi-PoissonianGaussianClippedRaw-2007-IEEE_TIP.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "0a415344670400f2e7689cdb980d36b79fd8511912b0332e04cade915a22485e",
+    "notes": [],
+    "download_error": null,
+    "authors": [
+      "Alessandro Foi",
+      "Mejdi Trimeche",
+      "Vladimir Katkovnik",
+      "Karen Egiazarian"
+    ],
+    "venue": "IEEE Transactions on Image Processing 17(10)",
+    "pages": "1737-1754",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1109/TIP.2008.2001399",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1109/TIP.2008.2001399",
+      "https://webpages.tuni.fi/foi/sensornoise.html"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 18,
+    "bytes": 6751576,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 94,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "wang2004",
+    "title": "Image Quality Assessment: From Error Visibility to Structural Similarity",
+    "year": 2004,
+    "doi": "10.1109/TIP.2003.819861",
+    "url": "https://www.cns.nyu.edu/~lcv/ssim/",
+    "pdf_url": "https://www.cns.nyu.edu/pub/eero/wang03-reprint.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\wang2004.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "d643c9f72b90627ed206df46be1e91827e1423281903bf4dc1378e27bc303e2d",
+    "notes": [],
+    "download_error": null,
+    "authors": [
+      "Zhou Wang",
+      "Alan C. Bovik",
+      "Hamid R. Sheikh",
+      "Eero P. Simoncelli"
+    ],
+    "venue": "IEEE Transactions on Image Processing 13(4)",
+    "pages": "600-612",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1109/TIP.2003.819861",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1109/TIP.2003.819861",
+      "https://www.cns.nyu.edu/~lcv/ssim/"
+    ],
+    "bytes": 1767707,
+    "pdf_pages": 13,
+    "missing_reason": null,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 72,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "zhang2018",
+    "title": "The Unreasonable Effectiveness of Deep Features as a Perceptual Metric",
+    "year": 2018,
+    "doi": "10.1109/CVPR.2018.00068",
+    "url": "https://richzhang.github.io/PerceptualSimilarity/",
+    "pdf_url": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_The_Unreasonable_Effectiveness_CVPR_2018_paper.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\zhang2018.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "6809251d37d9d9847335e27da3bd71fdab15197219841ebe9706e6e3d18cc35b",
+    "notes": [],
+    "bytes": 1712552,
+    "pages": "586-595",
+    "download_error": null,
+    "authors": [
+      "Richard Zhang",
+      "Phillip Isola",
+      "Alexei A. Efros",
+      "Eli Shechtman",
+      "Oliver Wang"
+    ],
+    "venue": "CVPR 2018",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1109/CVPR.2018.00068",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1109/CVPR.2018.00068",
+      "https://richzhang.github.io/PerceptualSimilarity/"
+    ],
+    "pdf_pages": 10,
+    "missing_reason": null,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 53,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "fivek2011",
+    "title": "Learning Photographic Global Tonal Adjustment with a Database of Input/Output Image Pairs",
+    "year": 2011,
+    "doi": "10.1109/CVPR.2011.5995413",
+    "url": "https://people.csail.mit.edu/vladb/photoadjust/",
+    "pdf_url": "https://people.csail.mit.edu/vladb/photoadjust/db_imageadjust.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\db_imageadjust.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "a04a9e022097bd140b77b8cce2e9204d2c2c3a7293e842b9fb6387f0c2d45d67",
+    "notes": [
+      "Dataset licenses are separate from paper copyright."
+    ],
+    "download_error": null,
+    "authors": [
+      "Vladimir Bychkovsky",
+      "Sylvain Paris",
+      "Eric Chan",
+      "Frédo Durand"
+    ],
+    "venue": "CVPR 2011",
+    "pages": "97-104",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1109/CVPR.2011.5995413",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1109/CVPR.2011.5995413",
+      "https://people.csail.mit.edu/vladb/photoadjust/"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 8,
+    "bytes": 3149215,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 41,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "acceptable2015",
+    "title": "Predicting Range of Acceptable Photographic Tonal Adjustments",
+    "year": 2015,
+    "doi": "10.1109/ICCPHOT.2015.7168372",
+    "url": "https://projects.csail.mit.edu/acceptable-adj/",
+    "pdf_url": "https://projects.csail.mit.edu/acceptable-adj/acceptable_adj.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\acceptable2015.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "ccc629b4f85aede480fd2fcd1530991930d18258e18be3d95fd8d48303689b6b",
+    "notes": [],
+    "bytes": 1637672,
+    "pages": "1-9",
+    "download_error": null,
+    "authors": [
+      "Ronnachai Jaroensri",
+      "Sylvain Paris",
+      "Aaron Hertzmann",
+      "Vladimir Bychkovsky",
+      "Frédo Durand"
+    ],
+    "venue": "ICCP 2015",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1109/ICCPHOT.2015.7168372",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1109/ICCPHOT.2015.7168372",
+      "https://projects.csail.mit.edu/acceptable-adj/"
+    ],
+    "pdf_pages": 9,
+    "missing_reason": null,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 36,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "exposure2018",
+    "title": "Exposure: A White-Box Photo Post-Processing Framework",
+    "year": 2018,
+    "doi": "10.1145/3181974",
+    "url": "https://arxiv.org/abs/1709.09602",
+    "pdf_url": "https://arxiv.org/pdf/1709.09602",
+    "license": "arXiv non-exclusive distribution license. Local research only; exclude PDF from installer.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\1709.09602v2.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "356b830a6e2ff00ad4db5969d3f1435c217a14bc605a0634727467c497444adb",
+    "notes": [],
+    "download_error": null,
+    "authors": [
+      "Yuanming Hu",
+      "Hao He",
+      "Chenxi Xu",
+      "Baoyuan Wang",
+      "Stephen Lin"
+    ],
+    "venue": "ACM Transactions on Graphics 37(2), Article 26",
+    "pages": "1-17",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1145/3181974",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1145/3181974",
+      "https://arxiv.org/abs/1709.09602"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 23,
+    "bytes": 6579154,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 92,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "gier2021",
+    "title": "A Benchmark and Baseline for Language-Driven Image Editing",
+    "year": 2021,
+    "doi": "10.1007/978-3-030-69544-6_38",
+    "url": "https://arxiv.org/abs/2010.02330",
+    "pdf_url": "https://arxiv.org/pdf/2010.02330",
+    "license": "arXiv non-exclusive distribution license. Local research only; exclude PDF from installer.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\2010.02330v1.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "c9b068387faec7099872fab5002e5ce42e75bfbb1fc06d412b738d4ce5cd2fc0",
+    "notes": [
+      "ACCV conference 2020; proceedings chapter published 2021."
+    ],
+    "download_error": null,
+    "authors": [
+      "Jing Shi",
+      "Ning Xu",
+      "Trung Bui",
+      "Franck Dernoncourt",
+      "Zheng Wen",
+      "Chenliang Xu"
+    ],
+    "venue": "Computer Vision - ACCV 2020, LNCS",
+    "pages": "636-651",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1007/978-3-030-69544-6_38",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1007/978-3-030-69544-6_38",
+      "https://arxiv.org/abs/2010.02330"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 27,
+    "bytes": 34841158,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 69,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "planning2021",
+    "title": "Learning by Planning: Language-Guided Global Image Editing",
+    "year": 2021,
+    "doi": "10.1109/CVPR46437.2021.01338",
+    "url": "https://openaccess.thecvf.com/content/CVPR2021/html/Shi_Learning_by_Planning_Language-Guided_Global_Image_Editing_CVPR_2021_paper.html",
+    "pdf_url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Shi_Learning_by_Planning_Language-Guided_Global_Image_Editing_CVPR_2021_paper.pdf",
+    "license": "Copyright retained; open redistribution license not verified; local research copy only.",
+    "access": "Local PDF identity verified and page text indexed; local research use only",
+    "local_path": "docs\\research\\papers\\Shi_Learning_by_Planning_Language-Guided_Global_Image_Editing_CVPR_2021_paper.pdf",
+    "checked_at": "2026-10-26",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "available_local",
+    "sha256": "b9d05474aa4b124a68af581705c767c55fb7de07b7f77d986500c36a55c30ef0",
+    "notes": [
+      "CVF pages 13590-13599 preferred over Crossref 13585-13594; CVF author Trung Bui corrects Crossref Tmng Bui."
+    ],
+    "download_error": null,
+    "authors": [
+      "Jing Shi",
+      "Ning Xu",
+      "Yihang Xu",
+      "Trung Bui",
+      "Franck Dernoncourt",
+      "Chenliang Xu"
+    ],
+    "venue": "CVPR 2021",
+    "pages": "13590-13599",
+    "type": "research_paper",
+    "doi_url": "https://doi.org/10.1109/CVPR46437.2021.01338",
+    "metadata_sources": [
+      "https://api.crossref.org/works/10.1109/CVPR46437.2021.01338",
+      "https://openaccess.thecvf.com/content/CVPR2021/html/Shi_Learning_by_Planning_Language-Guided_Global_Image_Editing_CVPR_2021_paper.html"
+    ],
+    "missing_reason": null,
+    "availability_note": "This is not proof of paywall or global unavailability. Use the catalogued official/author URL manually or retry later.",
+    "pdf_pages": 10,
+    "bytes": 3995317,
+    "rag_index": {
+      "version": "pdf-pages-v1",
+      "chunks": 47,
+      "identity": {
+        "method": "verified_sha256",
+        "score": 1.0
+      }
+    }
+  },
+  {
+    "id": "cie2020",
+    "title": "CIE S 017:2020 ILV: International Lighting Vocabulary, 2nd edition (e-ILV)",
+    "year": 2020,
+    "url": "https://www.cie.co.at/e-ilv",
+    "pdf_url": null,
+    "license": "Official definitions readable online; full standard redistribution not verified.",
+    "access": "official HTML term pages available; no free official full PDF verified",
+    "local_path": null,
+    "type": "normative_terminology",
+    "redistribute_pdf": false,
+    "include_pdf_in_installer": false,
+    "installer_policy": "metadata_only",
+    "download_status": "not_applicable_html",
+    "term_urls": {
+      "colourfulness": "https://cie.co.at/eilvterm/17-22-072",
+      "saturation": "https://cie.co.at/eilvterm/17-22-073",
+      "chroma": "https://cie.co.at/eilvterm/17-22-074",
+      "brightness": "https://cie.co.at/eilvterm/17-22-059",
+      "lightness": "https://cie.co.at/eilvterm/17-22-063"
+    },
+    "doi": "10.25039/S017.2020",
+    "authors": [
+      "International Commission on Illumination (CIE)"
+    ],
+    "checked_at": "2026-10-26",
+    "notes": [
+      "Official online terminology; no freely downloadable full standard PDF verified."
+    ]
+  }
+]

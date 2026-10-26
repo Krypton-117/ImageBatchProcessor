@@ -1,0 +1,320 @@
+[
+  {
+    "id": "brighten",
+    "label": "提亮 / 曝光补偿",
+    "english": "exposure compensation",
+    "aliases": [
+      "太暗",
+      "亮一点",
+      "提亮",
+      "明亮"
+    ],
+    "definition": "增加线性曝光或中间调亮度；不等于恢复已损失的暗部信号。",
+    "metrics": [
+      "median",
+      "blackClip",
+      "whiteClip",
+      "noiseEstimate"
+    ],
+    "seed": {
+      "exposure": 0.4,
+      "shadows": 0.15
+    },
+    "sources": [
+      "reinhard2002",
+      "foi2008"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "darken",
+    "label": "压暗 / 降低曝光",
+    "english": "decrease exposure",
+    "aliases": [
+      "太亮",
+      "暗一点",
+      "压暗"
+    ],
+    "definition": "降低整体亮度；已剪切的纹理不能由压暗重建。",
+    "metrics": [
+      "median",
+      "whiteClip"
+    ],
+    "seed": {
+      "exposure": -0.4
+    },
+    "sources": [
+      "reinhard2002"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "highlights",
+    "label": "高光压缩",
+    "english": "highlight compression",
+    "aliases": [
+      "救高光",
+      "过曝",
+      "天空太白",
+      "高光压下来"
+    ],
+    "definition": "压缩可用高光范围；通道饱和区只能改善观感，不能证明细节恢复。",
+    "metrics": [
+      "p95",
+      "whiteClip"
+    ],
+    "seed": {
+      "highlights": -0.4,
+      "shoulder": 1
+    },
+    "sources": [
+      "reinhard2002"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "shadows",
+    "label": "阴影提升",
+    "english": "shadow lifting",
+    "aliases": [
+      "暗部",
+      "脸太黑",
+      "背光",
+      "阴影提亮"
+    ],
+    "definition": "增加阴影亮度，同时可能放大噪声；没有人脸定位时是全局阴影处理。",
+    "metrics": [
+      "p05",
+      "blackClip",
+      "noiseEstimate"
+    ],
+    "seed": {
+      "shadows": 0.35
+    },
+    "sources": [
+      "foi2008",
+      "reinhard2002"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "contrast",
+    "label": "增加反差 / 局部对比",
+    "english": "contrast enhancement",
+    "aliases": [
+      "通透",
+      "灰蒙蒙",
+      "有层次",
+      "立体感",
+      "反差大"
+    ],
+    "definition": "通透具有歧义；此处解释为适度增加全局/局部对比，去雾仅为受限参数。",
+    "metrics": [
+      "rmsContrast",
+      "edgeEnergy",
+      "whiteClip",
+      "blackClip"
+    ],
+    "seed": {
+      "contrast": 1.12,
+      "clarity": 0.08
+    },
+    "sources": [
+      "reinhard2002",
+      "exposure2018",
+      "peli1990"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "soft",
+    "label": "柔和 / 降低反差",
+    "english": "soft tonal contrast",
+    "aliases": [
+      "柔和",
+      "刺眼",
+      "反差小",
+      "柔一点"
+    ],
+    "definition": "降低色调反差；不等于光学柔焦，不承诺改变光照方向。",
+    "metrics": [
+      "rmsContrast"
+    ],
+    "seed": {
+      "contrast": 0.9,
+      "highlights": -0.15
+    },
+    "sources": [
+      "reinhard2002",
+      "peli1990"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "warm",
+    "label": "暖色倾向",
+    "english": "warm white balance",
+    "aliases": [
+      "暖一点",
+      "温暖",
+      "夕阳味",
+      "偏暖"
+    ],
+    "definition": "施加整体白平衡偏移；平均 Lab b 只是方向代理，非色温开尔文，也非场景照明估计。 此处 Lab b* 仅为全局黄蓝偏移代理，不等于相关色温或完整色适应模型；参数映射来自 IBP 实现。",
+    "metrics": [
+      "labB"
+    ],
+    "seed": {
+      "temperature": 0.18
+    },
+    "sources": [
+      "cie2020"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "cool",
+    "label": "冷色倾向",
+    "english": "cool white balance",
+    "aliases": [
+      "冷一点",
+      "清冷",
+      "偏冷",
+      "发黄"
+    ],
+    "definition": "施加整体冷色偏移；无法仅靠全图均值判定物体是否具有正确颜色。 此处 Lab b* 仅为全局黄蓝偏移代理，不等于相关色温或完整色适应模型；参数映射来自 IBP 实现。",
+    "metrics": [
+      "labB"
+    ],
+    "seed": {
+      "temperature": -0.18
+    },
+    "sources": [
+      "cie2020"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "vivid",
+    "label": "增强色彩鲜明度",
+    "english": "colourfulness enhancement",
+    "aliases": [
+      "鲜艳",
+      "颜色浓",
+      "有活力",
+      "颜色淡"
+    ],
+    "definition": "提高色彩鲜明度，受通道剪切约束；Hasler 指标量化色彩分布，不是审美分数。",
+    "metrics": [
+      "colorfulness",
+      "meanSaturation",
+      "whiteClip"
+    ],
+    "seed": {
+      "saturation": 1.12,
+      "vibrance": 0.08
+    },
+    "sources": [
+      "hasler2003",
+      "fivek2011",
+      "cie2020"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "muted",
+    "label": "降低色彩鲜明度",
+    "english": "desaturation",
+    "aliases": [
+      "饱和度低",
+      "太艳",
+      "颜色假",
+      "高级灰",
+      "淡雅"
+    ],
+    "definition": "适度去饱和；高级感没有统一客观标尺，需要用户偏好确认。",
+    "metrics": [
+      "colorfulness",
+      "meanSaturation"
+    ],
+    "seed": {
+      "saturation": 0.82
+    },
+    "sources": [
+      "hasler2003",
+      "fivek2011",
+      "cie2020"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "denoise",
+    "label": "噪声抑制",
+    "english": "noise reduction",
+    "aliases": [
+      "噪点",
+      "颗粒太多",
+      "干净一点",
+      "高感"
+    ],
+    "definition": "双边降噪会折中细节；当前 noiseEstimate 是空间代理，不是标定传感器噪声。 Foi 引文支持噪声建模背景，不等价于当前空间噪声代理或双边滤波算法验证。",
+    "metrics": [
+      "noiseEstimate",
+      "edgeEnergy"
+    ],
+    "seed": {
+      "denoise": 0.2
+    },
+    "sources": [
+      "foi2008"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "sharpen",
+    "label": "边缘锐化",
+    "english": "edge sharpening",
+    "aliases": [
+      "清晰",
+      "锐一点",
+      "模糊",
+      "糊了"
+    ],
+    "definition": "提高边缘锐度不等于恢复失焦/运动模糊细节；强模糊标记为受限。 SSIM 引文仅支持结构比较背景，不证明本工具锐化算法；边缘能量是工程代理。",
+    "metrics": [
+      "edgeEnergy",
+      "sharpness",
+      "noiseEstimate"
+    ],
+    "seed": {
+      "sharpen": 0.12
+    },
+    "sources": [
+      "wang2004"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  },
+  {
+    "id": "natural",
+    "label": "自然 / 保守优化",
+    "english": "conservative rendering",
+    "aliases": [
+      "自然",
+      "真实",
+      "不要过度",
+      "原汁原味"
+    ],
+    "definition": "小幅调整并约束新增剪切、噪声及细节损失；自然观感依赖场景和个人偏好。",
+    "metrics": [
+      "median",
+      "whiteClip",
+      "blackClip"
+    ],
+    "seed": {},
+    "sources": [
+      "fivek2011",
+      "exposure2018"
+    ],
+    "target_basis": "工程相对目标：仅用于本原型试调；不是论文给定的审美合格线"
+  }
+]

@@ -1,4 +1,43 @@
-# ImageBatchProcessor
+# ImageBatchProcessor Photo Agent (community fork)
+
+**基于 [Chilliziehen 的 ImageBatchProcessor](https://github.com/Chilliziehen/ImageBatchProcessor) 的独立社区改版。** 感谢原作者构建 Vulkan RAW 处理核心、目标匹配、批处理和 Studio 编辑器。本 fork 在其 v1.1.0 源码（`3edbc74`）上加入自然语言参数 Agent、论文检索、人工标注与个人参数策略训练；并非作者的官方版本或背书。
+
+> **发布状态：**此仓库提供 Photo Agent 0.2.0 的源码和构建脚本；尚未在本 fork 的 Releases 发布安装器或模型权重。下方原版 v1.1.0 的下载链接指向上游，**不包含**本改版的 Agent。请勿把本地构建验证当成已公开的二进制发行。
+
+## 社区版做了什么
+
+- 在原生 Studio 中增加 Agent 命令入口、API 设置、对比及“满意/不满意”标注；保留手动调节、Vulkan 处理、批处理与配方。也提供本机 Web 工作区和仅绑定 `127.0.0.1` 的受令牌保护 API。教师可配置 OpenAI Chat Completions 兼容的 URL、模型名和密钥（预留 DeepSeek）；密钥使用 Windows DPAPI 保存，使用远程模型时发送命令、测量数据、EXIF 与所选文献片段，不发送原图像素。
+- 以引擎输出的 23 项统计、YRGB 直方图、原图可用的 RAW/EXIF 诊断和目标/保护条件作为结构化输入。中英文术语词表和 SQLite FTS5/BM25 论文检索为“通透”“压暗高光”等说法提供可追溯的测量语境；论文定义指标，不规定唯一的审美值。候选参数经原版 Vulkan 渲染、结果测量和保护条件检查后才呈现给用户标注。
+- 标注保存原图哈希与副本、命令、测量和目标、模型提案、实际应用参数、预览与评估、人工评分及修订历史。满意样本导出为 `qwen-sft.jsonl`；不满意样本留档，但当前不作为正向 SFT 目标。个人数据默认位于 Windows“文档”文件夹的 `IBP Training`，不属于 Git 仓库。
+
+### 模型和训练原理
+
+| 角色 | 输入与输出 | 本版状态 |
+| --- | --- | --- |
+| 本地参数生成 | Qwen3-1.7B Q4_K_M 消费文字、指标、目标和检索证据，输出受限的调节器参数 JSON；CPU 推理，Vulkan 负责图像处理 | 本地安装版曾验证真实 RAW 生成/渲染链路；权重不在 Git 中 |
+| 个人语言策略 | Qwen3-0.6B 可训练基座，对“提示 + 人工认可的实际参数 JSON”做 **仅响应 token 的 LoRA 监督微调** | 官方基座上完成离线合成样本训练、保存和重载；未验证个人审美质量 |
+| 小型数值策略 | 174 维测量/直方图/结构化意图/目标 → 64 隐层 → 14 个操作参数的 NumPy MLP | 合成数值样本训练、分组验证、权重导出已实现；相机端未部署 |
+
+这里的“蒸馏”是**教师建议 → 渲染及人工审核 → 认可答案的任务级监督**：当前代码没有取得教师 logits，也没有实现分布匹配损失；不应等同于完整的经典知识蒸馏。LoRA 仅训练低秩适配权重；MLP 直接回归数值控制量，两者不是同一个模型，也不必同时训练。按原图哈希及拍摄组隔离训练/验证，记录 Qwen 留出 token loss、MLP 参数 MAE 与中位数基线；这些指标不能代替留出照片的人工审美测试。相机移植还需要复现测量和归一化口径、映射 ISP 控件并实机验证。
+
+**研究依据与边界：**[MIT-Adobe FiveK 原论文（Bychkovsky 等，CVPR 2011）](https://people.csail.mit.edu/vladb/photoadjust/)提供输入/修图配对与不同修图者的背景，不证明某一套参数普适；[Hasler–Süsstrunk（SPIE 2003）](https://doi.org/10.1117/12.477378)支持色彩丰富度的测量定义而不是“好看”的阈值。[LoRA（Hu 等，2021）](https://arxiv.org/abs/2106.09685)支持参数高效微调；[Hinton 等（2015）](https://arxiv.org/abs/1503.02531)定义经典教师/学生蒸馏框架，[Qwen3 技术报告](https://arxiv.org/abs/2505.09388)讨论其模型家族的训练与蒸馏，均**不是**本 fork 个性化效果已达标的证据。检索采用 [SQLite FTS5 文档中的 BM25](https://www.sqlite.org/fts5.html)；指标映射及适用限制见 [摄影指标研究](docs/research/PHOTOGRAPHIC_METRICS.md)。
+
+### 源码使用和发布边界
+
+```powershell
+git clone --recurse-submodules https://github.com/Krypton-117/ImageBatchProcessor.git
+cd ImageBatchProcessor
+python -m pip install -r agent/requirements-dev.txt
+python -m unittest discover -s tests/agent -q
+```
+
+Agent 开发、API、个人数据目录和 Windows 安装器构建前提见 [Agent 说明](agent/README.zh-CN.md)。构建脚本 `tools/agent/build_windows.py` 依赖单独准备的模型、运行时和 Vulkan/Studio 产物；克隆源码**不会自动获得离线安装器**。文献 PDF、RAW 测试照片、用户数据、API 密钥、个人权重与约 2.48 GB 的本地安装包均不纳入 Git；不要从别人的训练数据推断自己的审美效果。
+
+项目源码延续原作者的 [MIT License](LICENSE)，保留 Chilliziehen 的版权声明；模型与运行时的 Apache-2.0、LibRaw 等第三方条款单独遵循 [第三方声明](agent/THIRD_PARTY_NOTICES.md)及[上游声明](THIRD_PARTY_NOTICES.md)。感谢 Chilliziehen 开源了可验证的引擎与 Studio 基础。
+
+---
+
+## 上游 v1.1.0 原始说明（以下发行链接和版本仅指上游）
 
 **基于 Vulkan Compute 的 Windows RAW 批处理引擎、命令行工具与桌面编辑器。**
 

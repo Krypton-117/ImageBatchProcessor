@@ -1,0 +1,47 @@
+{
+  "model": {
+    "repo": "Qwen/Qwen3-1.7B-GGUF",
+    "revision": "90862c4b9d2787eaed51d12237eafdfe7c5f6077",
+    "file": "Qwen3-1.7B-Q8_0.gguf",
+    "sha256": "061b54daade076b5d3362dac252678d17da8c68f07560be70818cace6590cb1a",
+    "license": "Apache-2.0"
+  },
+  "runtime": {
+    "repo": "ggml-org/llama.cpp",
+    "version": "b11889",
+    "license": "MIT",
+    "sha256": "bf563dffb502a230ae06c9dc455b54cbc079e7e0bc270cd4d6191209b28d175d"
+  },
+  "raw": [
+    {
+      "file": "canon_40d.CR2",
+      "url": "https://raw.pixls.us/getfile.php/2101/nice/Canon - EOS 40D - RAW (3:2).CR2",
+      "sha256": "775c806358fedddec7622113a5e399a3330bd5a65e35e37ae1108d8bf58067be",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "nikon_d700.NEF",
+      "url": "https://raw.pixls.us/getfile.php/2249/nice/Nikon - D700 - 14bit 14bit compressed (Lossless) (3:2).NEF",
+      "sha256": "00c3314f2ccf92aff17644943e6149e8793b517c24bb2c38a15ec41f3af109cb",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "sony_a6000.ARW",
+      "url": "https://raw.pixls.us/getfile.php/1971/nice/Sony - ILCE-6000 - 12bit 12bit compressed (3:2).ARW",
+      "sha256": "ce8b4957281a817d52a07a691e2468567b6c78223bd0b514ffc1c65b002b8d89",
+      "license": "CC0-1.0"
+    }
+  ],
+  "native": {
+    "version": "v1.1.0",
+    "commit": "3edbc74ef35a43edd88cc3684fccde9c0d0857ef",
+    "zip_sha256": "930d4325df61c62ad213220bcefa1f3a3c03cf85393e1d607e4750dfff9c9c48"
+  },
+  "model06": {
+    "repo": "Qwen/Qwen3-0.6B-GGUF",
+    "revision": "23749fefcc72300e3a2ad315e1317431b06b590a",
+    "file": "Qwen3-0.6B-Q8_0.gguf",
+    "sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+    "license": "Apache-2.0"
+  }
+}

@@ -1,5 +1,6 @@
 #pragma once
 #include "imgbp_editor.h"
+#include "agent_bridge.h"
 #include "imgui.h"
 #include "imgui_impl_vulkan.h"
 #include <SDL3/SDL.h>
@@ -95,6 +96,19 @@ class Editor {
   fs::path sessionPath(const fs::path &) const;
   void openExport();
   void startExport();
+  std::future<AgentResult> agentTask;
+  std::future<std::string> feedbackTask;
+  AgentResult agentResult;
+  EditState agentStart{};
+  char agentPrompt[4501]{}, agentGroup[451]{};
+  int agentRole = 0;
+  bool agentReview = false, agentCompare = false;
+  IBP_Image reviewImage = 0, reviewDisplay = 0, reviewBefore = 0, reviewBeforeDisplay = 0;
+  VkDescriptorSet reviewSet{}, reviewBeforeSet{};
+  int reviewW = 0, reviewH = 0;
+  std::string agentStatus;
+  void drawAgent();
+  void releaseReview();
   void drawToolbar();
   void drawCanvas();
   void drawAdjustments();
