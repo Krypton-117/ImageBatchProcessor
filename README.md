@@ -4,6 +4,13 @@
 
 > **发布状态：**此仓库提供 Photo Agent 0.2.0 的源码和构建脚本；尚未在本 fork 的 Releases 发布安装器或模型权重。下方原版 v1.1.0 的下载链接指向上游，**不包含**本改版的 Agent。请勿把本地构建验证当成已公开的二进制发行。
 
+## 贡献者
+
+- [Chilliziehen](https://github.com/Chilliziehen)：原项目作者，构建 ImageBatchProcessor 的 Vulkan 图像处理核心、批处理工具和 Studio 编辑器。
+- [Krypton-117](https://github.com/Krypton-117)：社区改版维护者，推动并集成自然语言 Agent、论文 RAG、人工反馈与个人参数策略训练。
+
+本 fork 延续原项目的 [MIT 许可与原作者版权声明](LICENSE)；上述贡献者列表不改变各部分的著作权或第三方组件许可证。
+
 ## 社区版做了什么
 
 - 在原生 Studio 中增加 Agent 命令入口、API 设置、对比及“满意/不满意”标注；保留手动调节、Vulkan 处理、批处理与配方。也提供本机 Web 工作区和仅绑定 `127.0.0.1` 的受令牌保护 API。教师可配置 OpenAI Chat Completions 兼容的 URL、模型名和密钥（预留 DeepSeek）；密钥使用 Windows DPAPI 保存，使用远程模型时发送命令、测量数据、EXIF 与所选文献片段，不发送原图像素。
